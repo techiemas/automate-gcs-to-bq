@@ -4,19 +4,19 @@ from googleapiclient.discovery import build
 def trigger_df_job(cloud_event,environment):   
  
     service = build('dataflow', 'v1b3')
-    project = "prj-poc-001"
+    project = "avd-databricks-demo-473209"
 
     template_path = "gs://dataflow-templates-us-central1/latest/GCS_Text_to_BigQuery"
 
     template_body = {
     "jobName": "bq-load",  # Provide a unique name for the job
     "parameters": {
-        "javascriptTextTransformGcsPath": "gs://bkt-df-metadata/udf.js",
-        "JSONPath": "gs://bkt-df-metadata/bq.json",
+        "javascriptTextTransformGcsPath": "gs://bkt-df-metadata-26/udf.js",
+        "JSONPath": "gs://bkt-df-metadata-26/bq.json",
         "javascriptTextTransformFunctionName": "transform",
-        "outputTable": "prj-poc-001:user_data.users",
+        "outputTable": "avd-databricks-demo-473209.user_data",
         "inputFilePattern": "gs://bkt-landing-zone/user.csv",
-        "bigQueryLoadingTemporaryDirectory": "gs://bkt-df-metadata"
+        "bigQueryLoadingTemporaryDirectory": "gs://bkt-df-metadata-26"
     }
     }
 
